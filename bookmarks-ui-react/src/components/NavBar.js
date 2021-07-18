@@ -13,13 +13,20 @@ class NavBar extends React.Component {
   render() {
       let authenticatedLinks;
 
-      if (isAuthenticated) {
+      if (isAuthenticated()) {
           authenticatedLinks = (
+              <>
+              <li className="nav-item">
+              <NavLink className="nav-link" to="/bookmarks/add">
+                Add Bookmark
+              </NavLink>
+              </li>
               <li className="nav-item">
                   <NavLink className="nav-link" to="/login" onClick={this.logoutHandler}>
                       Logout
                   </NavLink>
               </li>
+              </>
           );
       } else {
           authenticatedLinks = (
@@ -56,11 +63,7 @@ class NavBar extends React.Component {
             </li>*/}
           </ul>
           <ul className="navbar-nav">
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/add-bookmark">
-                Add Bookmark
-              </NavLink>
-            </li>
+
               {authenticatedLinks}
           </ul>
         </div>

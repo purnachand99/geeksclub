@@ -3,6 +3,16 @@ import axios from "./axios";
 export const RECEIVE_BOOKMARKS = "RECEIVE_BOOKMARKS";
 export const RECEIVE_ALL_TAGS = "RECEIVE_ALL_TAGS";
 
+export function createBookmark(bookmark) {
+  return dispatch => {
+    return axios.post(`/api/bookmarks`, bookmark)
+      .then(response => {
+        console.log("saved bookmark successfully", response)
+      })
+      .catch(e => console.log("error", e));
+  };
+}
+
 export function fetchBookmarks(page) {
   let queryString = "?page="+page;
   return dispatch => {

@@ -9,6 +9,15 @@ const bookmark = props => (
                     {props.bookmark.title}
                 </NavLink>
             </h5>
+          <p className={"mb-0"}>
+            { props.bookmark.tags.map(tag =>
+              <span key={tag} style={{paddingRight: "10px"}}>
+               <NavLink to={`/tags?tag=${tag}`}>
+                 <span className="badge badge-primary" style={{fontSize: "15px"}}>{tag}</span>
+               </NavLink>
+              </span>
+            )}
+          </p>
         </div>
     </div>
 );
