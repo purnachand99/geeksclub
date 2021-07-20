@@ -50,5 +50,5 @@ export const getLoginUser = () => {
 
 export const isAuthenticated = () => {
     const token = getAccessToken();
-    return token !== undefined && token !== "";
+    return token !== undefined && token !== null && token !== "";
 };

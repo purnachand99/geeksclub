@@ -1,6 +1,6 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
-import {cleanState, isAuthenticated} from "../store/localStorage";
+import {cleanState, isAuthenticated} from "../services/localStorage";
 
 class NavBar extends React.Component {
 

@@ -10,7 +10,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>bookmarks-ui-react</module>
         <module>bookmarks-api-springboot</module>
     </modules>
 </project>
