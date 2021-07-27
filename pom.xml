@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.sivalabs</groupId>
-    <artifactId>fullstack-api-ui-demos</artifactId>
+    <artifactId>geeksclub</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>bookmarks-api-springboot</module>
+        <module>api-springboot</module>
     </modules>
 </project>
