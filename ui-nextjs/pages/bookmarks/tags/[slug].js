@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../../../components/Layout";
 import Bookmarks from "../../../components/Bookmarks";
 import TagsNav from "../../../components/TagsNav";
-import { getBookmarksByTag, getTags } from '../../../services/api'
+import { fetchBookmarksByTag, fetchAllTags } from '../../../services/api'
 import BookmarksSearchForm from "../../../components/BookmarksSearchForm";
 
 function Tag({ bookmarks, tags, slug }) {
@@ -26,8 +26,8 @@ function Tag({ bookmarks, tags, slug }) {
 export async function getServerSideProps(context) {
     const { slug } = context.params;
     const { page = 1 } = context.query;
-    const bookmarks = await getBookmarksByTag(slug, page)
-    const tags = await getTags()
+    const bookmarks = await fetchBookmarksByTag(slug, page)
+    const tags = await fetchAllTags()
 
     return {
         props: {

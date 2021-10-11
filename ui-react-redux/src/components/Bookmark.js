@@ -1,13 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const Bookmark = props => (
+const bookmark = props => (
     <div className="col-12">
         <div className="alert alert-primary" role="alert">
             <h5>
-                <a href={props.bookmark.url} target={'_blank'}>
+                <NavLink to={props.bookmark.url}>
                     {props.bookmark.title}
-                </a>
+                </NavLink>
             </h5>
           <p className={"mb-0"}>
             { props.bookmark.tags.map(tag =>
@@ -21,4 +21,4 @@ const Bookmark = props => (
         </div>
     </div>
 );
-export default Bookmark;
+export default bookmark;

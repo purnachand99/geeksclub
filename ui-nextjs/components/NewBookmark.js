@@ -13,10 +13,11 @@ const NewBookmark = ({createBookmarkHandler}) => {
         if(title === "" || url === "") {
             return;
         }
+      let tagsArray = tags === "" ? []: tags.split(",")
         const payload = {
             title,
             url,
-            tags
+            tags: tagsArray
         }
 
         const response = await createBookmarkHandler(payload)
