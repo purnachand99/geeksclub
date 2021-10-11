@@ -5,9 +5,9 @@ const bookmark = props => (
     <div className="col-12">
         <div className="alert alert-primary" role="alert">
             <h5>
-                <NavLink to={props.bookmark.url}>
+                <a href={props.bookmark.url} target={'_blank'}>
                     {props.bookmark.title}
-                </NavLink>
+                </a>
             </h5>
           <p className={"mb-0"}>
             { props.bookmark.tags.map(tag =>

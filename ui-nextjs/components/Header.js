@@ -35,7 +35,7 @@ const Header = () => {
             {clientSide && <ul className="navbar-nav">
               {isLoggedIn && <>
                 <li className="nav-item" key={"add-bookmark"}>
-                  <Link href={'/bookmarks/add'}><a className="nav-link">Add</a></Link>
+                  <Link href={'/bookmarks/add'}><a className="nav-link">Add Bookmark</a></Link>
                 </li>
                 <li className="nav-item" key={"logout"}>
                   <Link href={'/'}><a className="nav-link" onClick={logoutHandler}>Logout</a></Link>
