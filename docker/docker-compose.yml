@@ -1,0 +1,61 @@
+version: '3'
+services:
+
+  geeksclub-db:
+    image: postgres:12.3
+    container_name: geeksclub-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+      - PGDATA=/data/postgres
+    ports:
+      - "15432:5432"
+    restart: unless-stopped
+
+  gc-api-springboot:
+    build: ../geeksclub-api-springboot
+    ports:
+      - "18080:8080"
+    restart: unless-stopped
+    depends_on:
+      - geeksclub-db
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      SPRING_DATASOURCE_URL: jdbc:postgresql://geeksclub-db:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+
+  gc-ui-react:
+    container_name: gc-ui-react
+    build:
+      context: ../ui-react
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      REACT_APP_API_BASE_URL: http://localhost:18080
+    stdin_open: true
+
+  gc-ui-react-redux:
+    container_name: gc-ui-react-redux
+    build:
+      context: ../ui-react-redux
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      REACT_APP_API_BASE_URL: http://localhost:18080
+    stdin_open: true
+
+  gc-ui-nextjs:
+    container_name: gc-ui-nextjs
+    build:
+      context: ../ui-nextjs
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      REACT_APP_API_BASE_URL: http://localhost:18080
+    stdin_open: true

@@ -32,3 +32,14 @@ You can pick any of the available back-ends or front-ends.
 * **ui-react**: This is implemented using ReactJS, ReactRouter, Axios, Bootstrap 4
 * **ui-react-redux**: This is implemented using ReactJS, ReactRouter, Redux, Axios, Bootstrap 4
 * **ui-nextjs**: This is implemented using NextJS, Axios, Bootstrap 4
+
+## How to run?
+You can change backend/frontend in `run.sh` file `declare services="gc-api-springboot gc-ui-react"` with service names defined in `docker-compose.yaml` file.
+
+```shell
+$ ./run.sh start
+```
+
+## API Documentation
+
+You can read API endpoints info at [API Documentation](docs/api.md)
