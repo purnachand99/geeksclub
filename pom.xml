@@ -10,6 +10,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>api-springboot</module>
+        <module>geeksclub-api-springboot</module>
     </modules>
 </project>
