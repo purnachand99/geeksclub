@@ -120,7 +120,7 @@ public class BookmarkService {
         }
         bookmark.setUrl(bookmarkDTO.getUrl());
         bookmark.setTitle(getTitle(bookmarkDTO));
-        bookmark.setCreatedBy(userRepository.getOne(bookmarkDTO.getCreatedUserId()));
+        bookmark.setCreatedBy(userRepository.getById(bookmarkDTO.getCreatedUserId()));
         bookmark.setCreatedAt(LocalDateTime.now());
         Set<Tag> tagsList = new HashSet<>();
         bookmarkDTO

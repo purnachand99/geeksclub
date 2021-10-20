@@ -32,7 +32,7 @@ public class BookmarksImportService {
         ClassPathResource file = new ClassPathResource(fileName, this.getClass());
         try (InputStreamReader inputStreamReader =
                         new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8);
-                CSVReader csvReader = new CSVReader(inputStreamReader); ) {
+                CSVReader csvReader = new CSVReader(inputStreamReader)) {
             csvReader.skip(1);
             CSVIterator iterator = new CSVIterator(csvReader);
 
