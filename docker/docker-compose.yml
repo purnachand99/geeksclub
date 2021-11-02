@@ -14,7 +14,7 @@ services:
     restart: unless-stopped
 
   gc-api-springboot:
-    build: ../geeksclub-api-springboot
+    build: ../api-springboot
     ports:
       - "18080:8080"
     restart: unless-stopped
@@ -31,28 +31,6 @@ services:
     container_name: gc-ui-react
     build:
       context: ../ui-react
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    environment:
-      REACT_APP_API_BASE_URL: http://localhost:18080
-    stdin_open: true
-
-  gc-ui-react-redux:
-    container_name: gc-ui-react-redux
-    build:
-      context: ../ui-react-redux
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    environment:
-      REACT_APP_API_BASE_URL: http://localhost:18080
-    stdin_open: true
-
-  gc-ui-nextjs:
-    container_name: gc-ui-nextjs
-    build:
-      context: ../ui-nextjs
       dockerfile: Dockerfile
     ports:
       - "3000:3000"

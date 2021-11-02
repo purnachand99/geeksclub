@@ -11,9 +11,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.sivalabs</groupId>
-	<artifactId>geeksclub-api-springboot</artifactId>
+	<artifactId>api-springboot</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>geeksclub-api-springboot</name>
+	<name>api-springboot</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

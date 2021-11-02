@@ -21,17 +21,10 @@ An application to share the favorite bookmarks.
 * Weekly Selections
 
 ## Tech Stack
-The application is composed of a back-end API and a front-end UI modules.
-You can pick any of the available back-ends or front-ends.
+The application is composed of a back-end API and a front-end UI module.
 
-### BackEnds
 * **geeksclub-api-springboot**: This API is implemented using SpringBoot with SpringMVC based APIs.
-
-### FrontEnds
-
 * **ui-react**: This is implemented using ReactJS, ReactRouter, Axios, Bootstrap 4
-* **ui-react-redux**: This is implemented using ReactJS, ReactRouter, Redux, Axios, Bootstrap 4
-* **ui-nextjs**: This is implemented using NextJS, Axios, Bootstrap 4
 
 ## How to run?
 You can change backend/frontend in `run.sh` file `declare services="gc-api-springboot gc-ui-react"` with service names defined in `docker-compose.yaml` file.
