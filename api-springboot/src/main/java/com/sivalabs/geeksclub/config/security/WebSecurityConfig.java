@@ -5,8 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.access.expression.SecurityExpressionHandler;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,6 +27,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
+    private final TokenAuthenticationFilter tokenAuthenticationFilter;
+    private final RoleHierarchy roleHierarchy;
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -41,45 +41,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf()
+                .disable()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authorizeRequests()
+                .expressionHandler(webExpressionHandler(roleHierarchy))
+                .antMatchers("/actuator/**")
+                .permitAll()
+                .antMatchers("/api/auth/**")
+                .permitAll()
+                .and()
+                .addFilterBefore(tokenAuthenticationFilter, BasicAuthenticationFilter.class);
+    }
+
     private static SecurityExpressionHandler<FilterInvocation> webExpressionHandler(
             RoleHierarchy roleHierarchy) {
         DefaultWebSecurityExpressionHandler defaultWebSecurityExpressionHandler =
                 new DefaultWebSecurityExpressionHandler();
         defaultWebSecurityExpressionHandler.setRoleHierarchy(roleHierarchy);
         return defaultWebSecurityExpressionHandler;
-    }
-
-    @Configuration
-    @Order(1)
-    @RequiredArgsConstructor
-    public static class ApiWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
-        private final TokenAuthenticationFilter tokenAuthenticationFilter;
-        private final RoleHierarchy roleHierarchy;
-
-        @Bean
-        @Override
-        public AuthenticationManager authenticationManagerBean() throws Exception {
-            return super.authenticationManagerBean();
-        }
-
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http.antMatcher("/api/**")
-                    .csrf()
-                    .disable()
-                    .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                    .and()
-                    .authorizeRequests()
-                    .expressionHandler(webExpressionHandler(roleHierarchy))
-                    .antMatchers("/api/auth/**")
-                    .permitAll()
-                    .antMatchers(HttpMethod.POST, "/api/users/change-password")
-                    .authenticated()
-                    .antMatchers("/api/users/**")
-                    .permitAll()
-                    .and()
-                    .addFilterBefore(tokenAuthenticationFilter, BasicAuthenticationFilter.class);
-        }
     }
 }

@@ -1,7 +1,5 @@
 package com.sivalabs.geeksclub.bookmarks.services;
 
-import static com.sivalabs.geeksclub.common.utils.AppConstants.SYSTEM_USER_ID;
-
 import com.opencsv.CSVIterator;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
@@ -23,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 @Slf4j
 public class BookmarksImportService {
+    public static final Long SYSTEM_USER_ID = 1L;
     private final BookmarkService bookmarkService;
 
     public void importBookmarks(String fileName) throws IOException, CsvValidationException {

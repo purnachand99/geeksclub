@@ -18,7 +18,7 @@ class AddBookmark extends React.Component {
     api.createBookmark(bookmark)
         .then(response => {
           console.log("saved bookmark successfully", response)
-          window.location = "/bookmarks";
+          window.location = "/";
         })
         .catch(e => console.log("error", e));
   };

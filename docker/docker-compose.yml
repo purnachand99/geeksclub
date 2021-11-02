@@ -1,4 +1,4 @@
-version: '3'
+version: '3.5'
 services:
 
   geeksclub-db:
@@ -9,8 +9,14 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=postgres
       - PGDATA=/data/postgres
+      - POSTGRES_MULTIPLE_DATABASES=dev,test
     ports:
       - "15432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     restart: unless-stopped
 
   gc-api-springboot:
@@ -26,7 +32,14 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://geeksclub-db:5432/postgres
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
-
+    healthcheck:
+      test: "java /app/HealthCheck.java || exit 1"
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
+    volumes:
+      - ./HealthCheck.java:/app/HealthCheck.java
   gc-ui-react:
     container_name: gc-ui-react
     build:
