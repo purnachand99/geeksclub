@@ -1,8 +1,6 @@
 import React, {useState} from "react";
-//import {useHistory} from "react-router-dom";
 
 const NewBookmarkForm = (props) => {
-  //const history = useHistory();
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
   const [tags, setTags] = useState("");
@@ -14,9 +12,6 @@ const NewBookmarkForm = (props) => {
     }
     let tagsArray = tags === "" ? []: tags.split(",")
     props.createBookmarkHandler({ title: title, url: url, tags: tagsArray });
-    //props.history.push(`/bookmarks`);
-    //history.push(`/bookmarks`);
-    window.location = "/bookmarks"
   };
 
   return (

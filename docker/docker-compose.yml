@@ -32,21 +32,3 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://geeksclub-db:5432/postgres
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
-    healthcheck:
-      test: "java /app/HealthCheck.java || exit 1"
-      interval: 20s
-      timeout: 5s
-      retries: 5
-      start_period: 40s
-    volumes:
-      - ./HealthCheck.java:/app/HealthCheck.java
-  gc-ui-react:
-    container_name: gc-ui-react
-    build:
-      context: ../ui-react
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    environment:
-      REACT_APP_API_BASE_URL: http://localhost:18080
-    stdin_open: true

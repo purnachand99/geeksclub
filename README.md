@@ -3,8 +3,6 @@ An application to share the favorite bookmarks.
 
 [![Main Branch CI](https://github.com/sivaprasadreddy/geeksclub/actions/workflows/maven-main.yml/badge.svg)](https://github.com/sivaprasadreddy/geeksclub/actions/workflows/maven-main.yml)
 
-[![CircleCI](https://circleci.com/gh/sivaprasadreddy/geeksclub/tree/main.svg?style=svg)](https://circleci.com/gh/sivaprasadreddy/geeksclub/tree/main)
-
 ## Features:
 * User Login
 * Create Bookmark
