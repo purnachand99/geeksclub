@@ -29,5 +29,4 @@ public class BookmarkDTO {
     private LocalDateTime updatedAt;
 
     private List<String> tags = new ArrayList<>();
-
 }
