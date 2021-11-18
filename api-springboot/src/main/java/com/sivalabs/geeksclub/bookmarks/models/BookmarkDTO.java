@@ -30,9 +30,4 @@ public class BookmarkDTO {
 
     private List<String> tags = new ArrayList<>();
 
-    private boolean editable;
-
-    public String getTagsAsString() {
-        return String.join(",", getTags());
-    }
 }

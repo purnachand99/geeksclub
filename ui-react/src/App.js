@@ -2,6 +2,7 @@ import React from "react";
 import {Redirect, Route, Switch} from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Login from "./pages/Login";
+import Registration from "./pages/Registration";
 import Bookmarks from "./pages/Bookmarks";
 import BookmarksSearch from "./pages/BookmarksSearch";
 import BookmarksByTag from "./pages/BookmarksByTag";
@@ -16,6 +17,7 @@ class App extends React.Component {
         <main role="main" className="container-fluid">
           <Switch>
             <Route path="/login" component={Login} />
+            <Route path="/register" component={Registration} />
             <Route exact path="/">
                <Redirect to="/bookmarks" />
             </Route>

@@ -28,3 +28,7 @@ export function fetchAllTags() {
 export function login(credentials) {
   return axios.post(`/api/auth/login`, credentials);
 }
+
+export function createUser(user) {
+  return axios.post(`/api/users`, user);
+}

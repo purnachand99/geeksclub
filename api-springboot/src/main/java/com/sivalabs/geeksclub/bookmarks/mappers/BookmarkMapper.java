@@ -27,16 +27,6 @@ public class BookmarkMapper {
         if (bookmark.getTags() != null) {
             dto.setTags(bookmark.getTags().stream().map(Tag::getName).collect(Collectors.toList()));
         }
-        boolean editable = this.canCurrentUserEditLink(dto);
-        dto.setEditable(editable);
         return dto;
-    }
-
-    public boolean canCurrentUserEditLink(BookmarkDTO bookmarkDTO) {
-        User loginUser = securityService.loginUser();
-        return loginUser != null
-                && bookmarkDTO != null
-                && (Objects.equals(bookmarkDTO.getCreatedUserId(), loginUser.getId())
-                        || securityService.isCurrentUserAdminOrModerator(loginUser));
     }
 }
