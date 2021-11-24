@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>ui-react</module>
         <module>api-springboot</module>
     </modules>
 </project>

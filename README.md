@@ -31,6 +31,9 @@ The application is composed of a back-end API and a front-end UI module.
 $ ./run.sh start
 ```
 
+## Important URLs
+* Swagger UI : http://localhost:8080/swagger-ui.html
+
 # GeeksClub API Endpoints
 
 #### 1. Authentication
