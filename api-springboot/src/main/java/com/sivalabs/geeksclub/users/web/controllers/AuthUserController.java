@@ -7,6 +7,8 @@ import com.sivalabs.geeksclub.users.entities.User;
 import com.sivalabs.geeksclub.users.models.AuthUserDTO;
 import com.sivalabs.geeksclub.users.models.ChangePasswordRequest;
 import com.sivalabs.geeksclub.users.services.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +27,7 @@ public class AuthUserController {
 
     @GetMapping("")
     @PreAuthorize("hasRole('ROLE_USER')")
+    @Operation(security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<AuthUserDTO> me() {
         User loginUser = securityUtils.loginUser();
         if (loginUser != null) {
@@ -41,6 +44,7 @@ public class AuthUserController {
 
     @PostMapping("/change-password")
     @AnyAuthenticatedUser
+    @Operation(security = @SecurityRequirement(name = "bearerAuth"))
     public void changePassword(
             @RequestBody @Valid ChangePasswordRequest changePasswordRequest,
             @CurrentUser User loginUser) {

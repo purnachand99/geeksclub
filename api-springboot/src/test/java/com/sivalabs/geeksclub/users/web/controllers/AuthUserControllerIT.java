@@ -1,4 +1,4 @@
-package com.sivalabs.geeksclub.bookmarks.web.controllers;
+package com.sivalabs.geeksclub.users.web.controllers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

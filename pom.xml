@@ -17,4 +17,13 @@
         <module>ui-react-ts</module>
         <module>api-springboot</module>
     </modules>
+
+    <profiles>
+        <profile>
+            <id>e2e-selenide</id>
+            <modules>
+                <module>e2e-tests-selenide</module>
+            </modules>
+        </profile>
+    </profiles>
 </project>

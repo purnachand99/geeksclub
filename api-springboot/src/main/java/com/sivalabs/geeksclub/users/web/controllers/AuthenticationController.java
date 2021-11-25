@@ -7,6 +7,8 @@ import com.sivalabs.geeksclub.config.security.TokenHelper;
 import com.sivalabs.geeksclub.users.models.AuthUserDTO;
 import com.sivalabs.geeksclub.users.models.AuthenticationRequest;
 import com.sivalabs.geeksclub.users.models.AuthenticationResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import java.time.LocalDateTime;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -52,6 +54,7 @@ public class AuthenticationController {
 
     @PostMapping("/refresh")
     @PreAuthorize("hasRole('ROLE_USER')")
+    @Operation(security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<AuthenticationResponse> refreshAuthenticationToken(
             HttpServletRequest request) {
         String authToken = tokenHelper.getToken(request);

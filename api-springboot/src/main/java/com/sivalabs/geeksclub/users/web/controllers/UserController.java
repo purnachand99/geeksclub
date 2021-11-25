@@ -8,6 +8,8 @@ import com.sivalabs.geeksclub.users.models.CreateUserRequest;
 import com.sivalabs.geeksclub.users.models.UserDTO;
 import com.sivalabs.geeksclub.users.services.SecurityService;
 import com.sivalabs.geeksclub.users.services.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import java.util.Optional;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -49,6 +51,7 @@ public class UserController {
 
     @PutMapping("/{id}")
     @AnyAuthenticatedUser
+    @Operation(security = @SecurityRequirement(name = "bearerAuth"))
     public UserDTO updateUser(@PathVariable Long id, @RequestBody @Valid UserDTO user) {
         log.info("process=update_user, user_id={}", id);
         if (!id.equals(securityService.loginUserId())) {
@@ -60,6 +63,7 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     @AnyAuthenticatedUser
+    @Operation(security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         log.info("process=delete_user, user_id={}", id);
         Optional<UserDTO> userById = userService.getUserById(id);
