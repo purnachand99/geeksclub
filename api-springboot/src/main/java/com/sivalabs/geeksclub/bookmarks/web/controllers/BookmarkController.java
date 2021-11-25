@@ -10,6 +10,8 @@ import com.sivalabs.geeksclub.common.annotations.CurrentUser;
 import com.sivalabs.geeksclub.common.exceptions.ResourceNotFoundException;
 import com.sivalabs.geeksclub.users.entities.User;
 import com.sivalabs.geeksclub.users.services.SecurityService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -48,7 +50,7 @@ public class BookmarkController {
     }
 
     @GetMapping("/bookmarks/search")
-    public BookmarksDTO search(
+    public BookmarksDTO searchBookmarks(
             @RequestParam(name = "query", required = false) String query,
             @PageableDefault(size = 15)
                     @SortDefault.SortDefaults({@SortDefault(sort = "createdAt", direction = DESC)})
@@ -65,7 +67,7 @@ public class BookmarkController {
     }
 
     @GetMapping("/tags/{tag}")
-    public BookmarksDTO bookmarksByTag(
+    public BookmarksDTO getBookmarksByTag(
             @PathVariable(name = "tag") String tag,
             @PageableDefault(size = 15)
                     @SortDefault.SortDefaults({@SortDefault(sort = "createdAt", direction = DESC)})
@@ -75,13 +77,14 @@ public class BookmarkController {
     }
 
     @GetMapping("/bookmarks/{id}")
-    public BookmarkDTO getBookmark(@PathVariable Long id) {
+    public BookmarkDTO getBookmarkById(@PathVariable Long id) {
         return bookmarkService.getBookmarkById(id).orElse(null);
     }
 
     @PostMapping("/bookmarks")
     @ResponseStatus(HttpStatus.CREATED)
     @AnyAuthenticatedUser
+    @Operation(security = @SecurityRequirement(name = "bearerAuth"))
     public void createBookmark(
             @Valid @RequestBody BookmarkDTO bookmark, @CurrentUser User loginUser) {
         bookmark.setCreatedUserId(loginUser.getId());
@@ -90,6 +93,7 @@ public class BookmarkController {
 
     @PutMapping("/bookmarks/{id}")
     @AnyAuthenticatedUser
+    @Operation(security = @SecurityRequirement(name = "bearerAuth"))
     public void updateBookmark(
             @PathVariable Long id,
             @Valid @RequestBody BookmarkDTO bookmark,
@@ -102,6 +106,7 @@ public class BookmarkController {
 
     @DeleteMapping("/bookmarks/{id}")
     @AnyAuthenticatedUser
+    @Operation(security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<Void> deleteBookmark(@PathVariable Long id, @CurrentUser User loginUser) {
         BookmarkDTO bookmark = bookmarkService.getBookmarkById(id).orElse(null);
         this.checkPrivilege(id, bookmark, loginUser);

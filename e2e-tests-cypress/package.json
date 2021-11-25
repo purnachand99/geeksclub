@@ -1,0 +1,13 @@
+{
+  "name": "e2e-tests-cypress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "cypress open"
+  },
+  "devDependencies": {
+    "@cypress/request": "2.88.7",
+    "cypress": "^9.1.0"
+  }
+}
