@@ -14,16 +14,7 @@
         <maven.compiler.release>17</maven.compiler.release>
     </properties>
     <modules>
-        <module>ui-react</module>
+        <module>ui-react-ts</module>
         <module>api-springboot</module>
     </modules>
-
-    <profiles>
-        <profile>
-            <id>react-ts</id>
-            <modules>
-                <module>ui-react-ts</module>
-            </modules>
-        </profile>
-    </profiles>
 </project>

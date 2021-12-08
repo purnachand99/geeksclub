@@ -1,9 +1,9 @@
 version: '3.5'
 services:
-  gc-ui-react:
-    container_name: gc-ui-react
+  gc-ui-react-ts:
+    container_name: gc-ui-react-ts
     build:
-      context: ../ui-react
+      context: ../ui-react-ts
       dockerfile: Dockerfile
     ports:
       - "3000:3000"

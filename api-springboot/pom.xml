@@ -29,7 +29,7 @@
         <testcontainers.version>1.16.2</testcontainers.version>
         <spotless.version>2.17.4</spotless.version>
         <jib-maven-plugin.version>3.1.4</jib-maven-plugin.version>
-        <ui-build-dir>${project.basedir}/../ui-react/build</ui-build-dir>
+        <ui-build-dir>${project.basedir}/../ui-react-ts/build</ui-build-dir>
         <dockerhub.username>sivaprasadreddy</dockerhub.username>
         <dockerhub.imageName>${dockerhub.username}/geeksclub</dockerhub.imageName>
     </properties>
