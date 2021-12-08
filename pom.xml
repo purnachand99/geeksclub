@@ -8,9 +8,22 @@
     <artifactId>geeksclub</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.release>17</maven.compiler.release>
+    </properties>
     <modules>
         <module>ui-react</module>
         <module>api-springboot</module>
     </modules>
+
+    <profiles>
+        <profile>
+            <id>react-ts</id>
+            <modules>
+                <module>ui-react-ts</module>
+            </modules>
+        </profile>
+    </profiles>
 </project>

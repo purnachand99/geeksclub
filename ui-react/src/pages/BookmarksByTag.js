@@ -14,7 +14,6 @@ class BookmarksByTag extends React.Component {
       tags: [],
       bookmarks: {data:[]},
       page: values.page || 1,
-      query: values.query || "",
       tag: values.tag
     };
   }

@@ -17,7 +17,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <spring-cloud.version>2020.0.4</spring-cloud.version>
         <problem-spring-web.version>0.27.0</problem-spring-web.version>
         <jsoup.version>1.14.3</jsoup.version>
@@ -27,8 +27,9 @@
         <opencsv.version>5.5.2</opencsv.version>
         <node.version>v14.15.3</node.version>
         <testcontainers.version>1.16.2</testcontainers.version>
-        <spotless.version>2.7.0</spotless.version>
+        <spotless.version>2.17.4</spotless.version>
         <jib-maven-plugin.version>3.1.4</jib-maven-plugin.version>
+        <ui-build-dir>${project.basedir}/../ui-react/build</ui-build-dir>
         <dockerhub.username>sivaprasadreddy</dockerhub.username>
         <dockerhub.imageName>${dockerhub.username}/geeksclub</dockerhub.imageName>
     </properties>
@@ -222,7 +223,7 @@
                             <overwrite>true</overwrite>
                             <resources>
                                 <resource>
-                                    <directory>${project.basedir}/../ui-react/build</directory>
+                                    <directory>${ui-build-dir}</directory>
                                 </resource>
                             </resources>
                         </configuration>
@@ -265,7 +266,7 @@
 				<configuration>
 					<java>
 						<googleJavaFormat>
-							<version>1.8</version>
+							<version>1.12.0</version>
 							<style>AOSP</style>
 						</googleJavaFormat>
 					</java>
