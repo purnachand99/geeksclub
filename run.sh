@@ -2,7 +2,7 @@
 
 declare project_dir=$(dirname "$0")
 declare dc_app=${project_dir}/docker/docker-compose.yml
-declare services="gc-api-springboot gc-ui-react"
+declare services="gc-api-springboot gc-ui-react-ts"
 
 function build_api() {
     ./mvnw clean package -DskipTests
